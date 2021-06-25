@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Deliverymvc1.Models.Login
+
+@{
+    ViewData["Title"] = "login";
+}
+
+<h1>login</h1>
+
+<h4>Login</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="executivelogin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="username" class="control-label"></label>
+                <input asp-for="username" class="form-control" />
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@*@section Scripts {
+    @{ Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
+

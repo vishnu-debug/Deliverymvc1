@@ -1,0 +1,84 @@
+﻿@model Deliverymvc1.Models.Userreq
+
+
+@{
+    ViewData["Title"] = "Create";
+    var data = ViewBag.Message;
+}
+
+<h1>Create</h1>
+
+<h4>Userreq</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* <div class="form-group">
+            <label asp-for="RequestID" class="control-label"></label>
+            <input asp-for="RequestID" class="form-control" />
+            <span asp-validation-for="RequestID" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label asp-for="DTofPickup" class="control-label"></label>
+                <input asp-for="DTofPickup" class="form-control" />
+                <span asp-validation-for="DTofPickup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightOfPackage" class="control-label"></label>
+                <input asp-for="WeightOfPackage" class="form-control" />
+                <span asp-validation-for="WeightOfPackage" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">*@
+            <div>
+                <label asp-for="Address" class="control-label"></label>
+            </div>
+            <div>
+                <input asp-for="Address" value="@data.Address" />
+            </div>
+            @*<input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>*@
+
+
+            <input type="hidden" asp-for="CustomerID" value="@data.CustomerID" />
+            <div>
+                <label asp-for="City" class="control-label"></label>
+            </div>
+            <input asp-for="City" value="@data.City" />
+            <div>
+
+            </div>
+            <div>
+                <label asp-for="Name" class="control-label"></label>
+            </div>
+            <input  asp-for="Name" value="@ViewBag.ExecutiveName" />
+            @*<div class="form-group">
+            <label asp-for="City" class="control-label"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>*@
+            <input type="hidden" asp-for="ExecutiveID" value="@ViewBag.ExecutiveCity" />
+
+            @*@if (ViewBag.States != null)
+        {
+            @foreach (KeyValuePair<int, string> de in ViewBag.States)
+            {
+                value = "@de.Key" > @de.Value
+           }
+        }*@
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GetAllProducts">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

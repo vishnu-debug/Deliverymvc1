@@ -1,0 +1,63 @@
+﻿@model Deliverymvc1.Models.Executiveres
+
+@{
+    ViewData["Title"] = "AcceptRequest";
+}
+
+<h1>AcceptRequest</h1>
+
+<h4>Executiveres</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AcceptRequest">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExecutiveID" class="control-label"></label>
+                <input asp-for="ExecutiveID" class="form-control" value="@ViewBag.ExecutiveID" />
+                <span asp-validation-for="ExecutiveID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" value="@ViewBag.CustomerName" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RequestID" class="control-label"></label>
+                <input asp-for="RequestID" class="form-control" value="@ViewBag.RequestID" />
+                <span asp-validation-for="RequestID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input  class="form-control" value="@ViewBag.Address" />
+                
+            </div>
+            <div class="form-group">
+                <label  class="control-label"></label>
+                <input  class="form-control" value="@ViewBag.Dateandtimeofpickup" />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
