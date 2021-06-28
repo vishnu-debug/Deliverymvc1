@@ -39,6 +39,7 @@ namespace Deliverymvc1.Controllers
             }
             else
             {
+                ViewBag.msg = "please enter correct credentials";
                 return View();
             }
         }
@@ -88,6 +89,7 @@ namespace Deliverymvc1.Controllers
             }
             else
             {
+                ViewBag.msg = "please enter correct credentials";
                 return View();
             }
         }
@@ -127,11 +129,12 @@ namespace Deliverymvc1.Controllers
             {
                 string name = obj.UserName;
                 HttpContext.Session.SetString("username", name);
-                return RedirectToAction("Create", "Executiveres");
+                return RedirectToAction("ListAllRequest", "Executiveres");
 
             }
             else
             {
+                ViewBag.msg = "please enter correct credentials";
                 return View();
             }
         }

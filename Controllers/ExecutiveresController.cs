@@ -1,4 +1,5 @@
-﻿using Deliverymvc1.Models;
+﻿using Deliverymvc1.Data;
+using Deliverymvc1.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -14,7 +15,12 @@ namespace Deliverymvc1.Controllers
 {
     public class ExecutiveresController : Controller
     {
+        private readonly DeliverymvcContext _context;
         string Baseurl = "https://localhost:44394/";
+        public ExecutiveresController(DeliverymvcContext _Context)
+        {
+            _context = _Context;
+        }
 
 
 
@@ -206,10 +212,10 @@ namespace Deliverymvc1.Controllers
             List<Userreq> RequestInfo = new List<Userreq>();
             List<Customer> CustomerInfo = new List<Customer>();
 
-           
 
 
-           
+
+
 
             using (var client = new HttpClient())
             {
@@ -269,17 +275,67 @@ namespace Deliverymvc1.Controllers
             ViewData["CustomerName"] = obj2.Name;
             ViewData["Address"] = obj2.Address;
             ViewData["Dateandtimeofpickup"] = obj1.DTofPickup;
-            ViewData["ExecutiveID"] = obj1.ExecutiveID;
+            ViewData["CustomerID"] = obj1.CustomerID;
 
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.DeleteAsync("https://localhost:44394/api/userreqs/" + reqid))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                }
-            }
+            //using (var httpClient = new HttpClient())
+            //{
+            //    using (var response = await httpClient.DeleteAsync("https://localhost:44394/api/userreqs/" + reqid))
+            //    {
+            //        string apiResponse = await response.Content.ReadAsStringAsync();
+            //    }
+            //}
 
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AcceptRequest(Executiveres p)
+        {
+            New obj= new New();
+           
+            obj.Status = p.Status;
+            obj.Price = p.Price;
+            obj.RequestID = p.RequestID;
+            obj.CustomerID = p.ExecutiveID;
+            New obj2 = new New();
+           
+            string Baseurl = "https://localhost:44394/";
+            Executiveres Pobj = new Executiveres();
+            //  HttpClient obj = new HttpClient();
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(Baseurl);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync("api/Executiveres", content))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    obj2= JsonConvert.DeserializeObject<New>(apiResponse);
+                }
+
+
+
+            }
+            return RedirectToAction("show");
+        }
+        public async Task<IActionResult> Show()
+        {
+            List<New> obj1 = new List<New>();
+            //List<Customer> Customerinfo = new List<Customer>();
+            using (var client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync("api/Executiveres");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var CustomerResponse = Res.Content.ReadAsStringAsync().Result;
+                    obj1 = JsonConvert.DeserializeObject<List<New>>(CustomerResponse);
+                }
+            }
+            return View(obj1);
         }
     }
 }

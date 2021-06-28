@@ -6,24 +6,51 @@
 
 
 @model IEnumerable<Deliverymvc1.Models.Userreq>
+    <partial name="_Executivepartial" />
 
 
-@foreach (var item in Model)
-{
-    <h4>Executive: @ViewBag.ExectiveName</h4>
-    <h6>RequestID : @Html.DisplayFor(modelItem => item.RequestID)</h6>
-    <h6>Date of Pickup: @Html.DisplayFor(modelItem => item.DTofPickup)</h6>
-    <h6>Weight of Package: @Html.DisplayFor(modelItem => item.WeightOfPackage)</h6>
-    <h6>Address: @Html.DisplayFor(modelItem => item.Address)</h6>
+<html>
+<head>
+    <style>
+        h1 {
+            style ="color:blue;"; text-align: center;
+        }
 
-    <br />
-    <p>
-        @Html.ActionLink("Accept", "Create", "Executiveres",
-        new { reqid = item.RequestID, exeid = item.ExecutiveID })
-    </p>
-    <p>
-        @Html.ActionLink("Reject", "Create", "Executiveres",
-        new { reqid = item.RequestID, exeid = item.ExecutiveID })
-    </p>
-    <hr />
-}
+       
+
+        div {
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="background-color:powderblue;">
+
+    <h1>   List of request</h1>
+    @*<p>This is a paragraph.</p>
+    <div>This is a div.</div>*@
+
+
+
+
+    @foreach (var item in Model)
+    {
+        <h4>Executive: @ViewBag.ExectiveName</h4>
+        <h6>RequestID : @Html.DisplayFor(modelItem => item.RequestID)</h6>
+        <h6>Date of Pickup: @Html.DisplayFor(modelItem => item.DTofPickup)</h6>
+        <h6>Weight of Package: @Html.DisplayFor(modelItem => item.WeightOfPackage)</h6>
+        <h6>Address: @Html.DisplayFor(modelItem => item.Address)</h6>
+
+        <br />
+        <p>
+            @Html.ActionLink("Accept/Reject", "AcceptRequest", "Executiveres",
+            new { reqid = item.RequestID })
+        </p>
+      
+        <div>
+            <a asp-controller="Login" asp-action="executivelogin">Back </a>
+        </div>
+        <hr />
+    }
+</body>
+</html>
+

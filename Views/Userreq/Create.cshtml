@@ -5,6 +5,8 @@
     ViewData["Title"] = "Create";
     var data = ViewBag.Message;
 }
+<partial name="_Customerpartial" />
+<body style="background-color:powderblue;">
 
 <h1>Create</h1>
 
@@ -35,7 +37,7 @@
                 <label asp-for="Address" class="control-label"></label>
             </div>
             <div>
-                <input asp-for="Address" value="@data.Address" />
+                <input asp-for="Address" value="@data.Address" readonly />
             </div>
             @*<input asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>*@
@@ -45,28 +47,23 @@
             <div>
                 <label asp-for="City" class="control-label"></label>
             </div>
-            <input asp-for="City" value="@data.City" />
+            <input asp-for="City" value="@data.City" readonly />
             <div>
 
             </div>
             <div>
-                <label asp-for="Name" class="control-label"></label>
+                @*<label asp-for="Name" class="control-label"></label>*@
+                <label for="Name">Executive name:</label>
             </div>
-            <input  asp-for="Name" value="@ViewBag.ExecutiveName" />
+            <input  asp-for="Name" value="@ViewBag.ExecutiveName" readonly/>
             @*<div class="form-group">
             <label asp-for="City" class="control-label"></label>
             <input asp-for="City" class="form-control" />
             <span asp-validation-for="City" class="text-danger"></span>
         </div>*@
-            <input type="hidden" asp-for="ExecutiveID" value="@ViewBag.ExecutiveCity" />
+            <input type="hidden" asp-for="ExecutiveID" value="@ViewBag.ExecutiveCity" readonly />
 
-            @*@if (ViewBag.States != null)
-        {
-            @foreach (KeyValuePair<int, string> de in ViewBag.States)
-            {
-                value = "@de.Key" > @de.Value
-           }
-        }*@
+         
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -74,9 +71,13 @@
         </form>
     </div>
 </div>
+    </body>
 
 <div>
-    <a asp-action="GetAllProducts">Back to List</a>
+    <a asp-controller="Userreq" asp-action="Viewstatus">View status</a>
+</div>
+<div>
+    <a asp-controller="Login" asp-action="customerlogin">Back </a>
 </div>
 
 @section Scripts {

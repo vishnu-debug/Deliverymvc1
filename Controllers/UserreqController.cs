@@ -80,7 +80,7 @@ namespace Deliverymvc1.Controllers
                 }
 
             }
-            
+
 
 
             Customer obj1 = (from i in req
@@ -111,7 +111,7 @@ namespace Deliverymvc1.Controllers
         public async Task<IActionResult> Create(Userreq p)
         {
             Userreq Pobj = new Userreq();
-      
+
             using (var httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = new Uri(Baseurl);
@@ -123,7 +123,7 @@ namespace Deliverymvc1.Controllers
                     Pobj = JsonConvert.DeserializeObject<Userreq>(apiResponse);
                 }
             }
-            return RedirectToAction("GetAllProducts");
+            return RedirectToAction("Showsuccess");
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -190,5 +190,58 @@ namespace Deliverymvc1.Controllers
 
             return RedirectToAction("GetAllProducts");
         }
+        public async Task<IActionResult> Viewstatus()
+        {
+            List<New> obj1 = new List<New>();
+            List<Customer> Customerinfo = new List<Customer>();
+            using (var client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync("api/Executiveres");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var CustomerResponse = Res.Content.ReadAsStringAsync().Result;
+                    obj1 = JsonConvert.DeserializeObject<List<New>>(CustomerResponse);
+                }
+            }
+            using (var client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync("api/Customers");
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var CustomerResponse = Res.Content.ReadAsStringAsync().Result;
+                    Customerinfo = JsonConvert.DeserializeObject<List<Customer>>(CustomerResponse);
+
+                }
+            }
+            var obj = (from i in Customerinfo
+                       where i.UserName == HttpContext.Session.GetString("UserName")
+                       select i).FirstOrDefault();
+
+            var obj2 = (from i in obj1
+                        where i.CustomerID == obj.CustomerID
+                        select i);
+
+
+
+
+            return View(obj2);
+        }
+        public IActionResult Showsuccess()
+        {
+
+                return View();
+            }
+        }
     }
-}
+
+    

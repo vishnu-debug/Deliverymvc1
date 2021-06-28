@@ -61,7 +61,7 @@ namespace Deliverymvc1.Controllers
                     Pobj = JsonConvert.DeserializeObject<Customer>(apiResponse);
                 }
             }
-            return RedirectToAction("GetAllProducts");
+            return RedirectToAction("customerlogin","Login");
         }
 
         public async Task<IActionResult> Edit(int id)

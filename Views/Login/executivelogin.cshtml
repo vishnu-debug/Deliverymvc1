@@ -8,37 +8,49 @@
 @{
     ViewData["Title"] = "login";
 }
+<partial name="_Executivepartial" />
+<body style="background-color:powderblue;">
 
-<h1>login</h1>
 
-<h4>Login</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="executivelogin">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="username" class="control-label"></label>
-                <input asp-for="username" class="form-control" />
-                <span asp-validation-for="username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="password" class="control-label"></label>
-                <input asp-for="password" class="form-control" />
-                <span asp-validation-for="password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-        </form>
+    <h1>Executive login</h1>
+
+    <h4>Login</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="executivelogin">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="username" class="control-label"></label>
+                    <input asp-for="username" class="form-control" />
+                    <span asp-validation-for="username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="password" class="control-label"></label>
+                    <input asp-for="password" class="form-control" type="password" />
+                    <span asp-validation-for="password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+    @if (ViewBag.msg != null)
+    {
+        <script type="text/javascript">
+                     window.onload = function () {
+                     alert("@ViewBag.msg");
+                       };
+        </script>
+    }
+</body>
 
 @*<div>
         <a asp-action="Index">Back to List</a>
     </div>*@
 
 @*@section Scripts {
-    @{ Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}*@
+        @{ Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
 

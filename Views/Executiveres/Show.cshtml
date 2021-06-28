@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Deliverymvc1.Models.New>
+    <partial name="_Executivepartial" />
+
+@*<h1> You sucessfully Accepted that request </h1>
+    @model IEnumerable<Deliverymvc1.Models.New>*@
+<body style="background-color:powderblue;">
+
+<h2> Request Accepted/Rejected</h2>
+@foreach (var item in Model)
+{
+
+    if (item.Status == true)
+    {
+        <h6>Request ID: @Html.DisplayFor(modelItem => item.ExrequestID)</h6>
+        <h1> You sucessfully Accepted that request </h1>
+    }
+
+    else
+    {
+        <h6>Request ID: @Html.DisplayFor(modelItem => item.ExrequestID)</h6>
+        <h4> You sucessfully Rejected that request </h4>
+    }
+}
+<br />
+<div>
+    <a asp-controller="Userreq" asp-action="Create">Back </a>
+</div>
+    </body>
+
+

@@ -4,7 +4,7 @@
     ViewData["Title"] = "GetAllProducts";
 }
 
-<h1>GetAllProducts</h1>
+<h1>GetAllExecutive</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -21,9 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Password)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Age)
             </th>
@@ -36,9 +36,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.City)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.IsVerified)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Type)
             </th>
@@ -57,9 +57,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Password)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Age)
             </td>
@@ -72,15 +72,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.City)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IsVerified)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.@ExecutiveID }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
                 @Html.ActionLink("Delete", "Delete", new {  id=item.@ExecutiveID  })
             </td>
         </tr>
