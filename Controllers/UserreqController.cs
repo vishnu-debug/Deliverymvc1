@@ -95,8 +95,9 @@ namespace Deliverymvc1.Controllers
 
             if (obj1 != null && obj2 != null)
             {
-                ViewBag.Message = obj1;
-                ViewBag.Message = obj3;
+                ViewBag.City = obj1.City;
+                ViewBag.CustomerID = obj1.CustomerID;
+                ViewBag.Address = obj3.Address;
                 ViewData["ExecutiveCity"] = obj2.ExecutiveID;
                 ViewData["ExecutiveName"] = obj2.Name;
 
@@ -131,7 +132,7 @@ namespace Deliverymvc1.Controllers
             Userreq p = new Userreq();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44394/api/Userreqs/" + id))
+                using (var response = await httpClient.GetAsync("https://localhost:44394/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     p = JsonConvert.DeserializeObject<Userreq>(apiResponse);

@@ -14,7 +14,7 @@ namespace Deliverymvc1.Controllers
     public class CustomerController1 : Controller
     {
 
-        string Baseurl = "https://localhost:44394/";
+        string Baseurl ="https://localhost:44394/";
 
 
 

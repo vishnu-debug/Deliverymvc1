@@ -4,14 +4,16 @@ using Deliverymvc1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Deliverymvc1.Migrations
 {
     [DbContext(typeof(DeliverymvcContext))]
-    partial class DeliverymvcContextModelSnapshot : ModelSnapshot
+    [Migration("20211107143558_fourfour")]
+    partial class fourfour
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -3,7 +3,9 @@
 
 @{
     ViewData["Title"] = "Create";
-    var data = ViewBag.Message;
+    
+
+  
 }
 <partial name="_Customerpartial" />
 <body style="background-color:powderblue;">
@@ -37,17 +39,17 @@
                 <label asp-for="Address" class="control-label"></label>
             </div>
             <div>
-                <input asp-for="Address" value="@data.Address" readonly />
+                <input asp-for="Address" value="@ViewBag.Address" readonly />
             </div>
             @*<input asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>*@
 
 
-            <input type="hidden" asp-for="CustomerID" value="@data.CustomerID" />
+            <input type="hidden" asp-for="CustomerID" value="@ViewBag.CustomerID" />
             <div>
                 <label asp-for="City" class="control-label"></label>
             </div>
-            <input asp-for="City" value="@data.City" readonly />
+            <input asp-for="City" value="@ViewBag.City" readonly />
             <div>
 
             </div>
